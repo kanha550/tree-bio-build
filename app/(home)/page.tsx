@@ -10,6 +10,7 @@ import { redirect } from "next/navigation";
 export default async function Home() {
   const user = await onBoardUser();
   const profile = await getCurrentUsername();
+  // console.log(profile);
   
 
   if (!user.success) {

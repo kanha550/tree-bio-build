@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-i { zodResolvmport { useForm } from "react-hook-form";
-importer } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";

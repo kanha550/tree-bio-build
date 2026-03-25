@@ -94,11 +94,11 @@ export const getUserByUsername = async (username:string)=>{
     where:{
       username:username
     },
-  //  include:{
+   include:{
     
-  //   links:true,
-  //   socialLinks:true
-  //  }
+    links:true,
+    socialLinks:true
+   }
    
   })
   return currentUsername;
