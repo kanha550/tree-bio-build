@@ -3,35 +3,27 @@ import { onBoardUser } from "@/modules/auth/actions";
 import ClaimLinkForm from "@/modules/home/components/claim-link-form";
 import { getCurrentUsername } from "@/modules/profile/actions";
 
-
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
   const user = await onBoardUser();
   const profile = await getCurrentUsername();
-  // console.log(profile);
-  
 
   if (!user.success) {
     return redirect("/sign-in");
   }
 
- 
-   
-  
-
- 
-
   return (
-    <div className="min-h-screen ">
-      {/* Header */}
-
+    <div className="flex flex-col h-screen overflow-hidden">
       {/* Main Content */}
-      <main className="flex flex-col max-w-4xl mx-auto px-6">
-        <section className="text-center space-y-8 py-32">
+      <main className="flex flex-col flex-1 max-w-4xl mx-auto px-6">
+        
+        {/* Hero Section */}
+        <section className="text-center space-y-4 py-20">
+          
           {/* Hero Text */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight text-zinc-700 dark:text-zinc-100">
               Everything you are.
               <br />
@@ -46,26 +38,24 @@ export default async function Home() {
           </div>
 
           {/* CTA Button */}
-          <div className="pt-4">
-            {
-              user.success && profile?.username && (
-                <Link href="/admin/my-tree">
-                  <Button size="lg" className="px-8 py-3 text-lg font-medium cursor-pointer">
-                    TreeBio Dashboard
-                  </Button>
-                </Link>
-              )
-            }
-           
+          <div className="pt-2">
+            {user.success && profile?.username && (
+              <Link href="/admin/my-tree">
+                <Button className="px-8 py-3 text-lg font-medium cursor-pointer">
+                  TreeBio Dashboard
+                </Button>
+              </Link>
+            )}
           </div>
         </section>
 
         {/* Claim Link Section */}
-        <section className="pb-16 md:pb-24">
+        <section className="pb-8 md:pb-10">
           <div className="max-w-md mx-auto">
             <ClaimLinkForm />
           </div>
         </section>
+
       </main>
     </div>
   );
