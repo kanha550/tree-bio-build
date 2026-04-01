@@ -8,7 +8,6 @@ import Image from "next/image";
 import { ModeToggle } from "@/components/theme-toggle";
 
 const Navbar = () => {
-
   const { isSignedIn } = useUser();
 
   return (
@@ -24,10 +23,10 @@ const Navbar = () => {
           </Link>
 
           <div className="flex items-center gap-4">
-            <ModeToggle/>
+            <ModeToggle />
 
             {isSignedIn ? (
-              <UserButton afterSignOutUrl="/" />
+              <UserButton />   
             ) : (
               <div className="flex items-center gap-2">
 
