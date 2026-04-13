@@ -277,10 +277,7 @@ export default function TreeBioProfile({ profileData }: TreeBioProfileProps) {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(event) =>
-                    handleLinkClick(link.id, link.url, event)
-                  }
-                  className="flex items-center justify-between w-full px-2"
+                  onClick={() => handleLinkClick(link.id, link.url)}
                 >
                   <span className="flex-1 text-center truncate px-4">
                     {link.title}
