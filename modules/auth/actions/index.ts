@@ -23,16 +23,14 @@ export const onBoardUser = async () => {
                 firstName: firstName || null,
                 lastName: lastName || null,
                 imageUrl: imageUrl || null,
-                email: emailAddresses[0]?.emailAddress || "",
-                
+                email: emailAddresses[0]?.emailAddress ?? null, // ✅ fixed
             },
             create: {
                 clerkId: id,
                 firstName: firstName || null,
                 lastName: lastName || null,
                 imageUrl: imageUrl || null,
-                email: emailAddresses[0]?.emailAddress || "",
-                
+                email: emailAddresses[0]?.emailAddress ?? null, // ✅ fixed
             }
         });
 
