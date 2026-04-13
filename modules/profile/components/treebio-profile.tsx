@@ -265,33 +265,40 @@ export default function TreeBioProfile({ profileData }: TreeBioProfileProps) {
               <Button
                 key={link.id}
                 asChild
-                onClick={(event) => handleLinkClick(link.id, link.url, event)}
                 variant="outline"
-                className={`w-full h-14 text-base font-medium backdrop-blur-sm transition-all duration-200 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] group ${theme === "dark"
-                  ? "border-zinc-600/40 bg-zinc-700/40 text-zinc-100 hover:bg-zinc-600/60 hover:border-zinc-500/60"
-                  : "border-gray-300/60 bg-gray-100/40 text-gray-900 hover:bg-gray-200/60 hover:border-gray-400/60"
-                  }`}
+                className={`w-full h-14 text-base font-medium backdrop-blur-sm transition-all duration-200 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] group ${
+                  theme === "dark"
+                    ? "border-zinc-600/40 bg-zinc-700/40 text-zinc-100 hover:bg-zinc-600/60 hover:border-zinc-500/60"
+                    : "border-gray-300/60 bg-gray-100/40 text-gray-900 hover:bg-gray-200/60 hover:border-gray-400/60"
+                }`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <a
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={(event) =>
+                    handleLinkClick(link.id, link.url, event)
+                  }
                   className="flex items-center justify-between w-full px-2"
                 >
                   <span className="flex-1 text-center truncate px-4">
                     {link.title}
                   </span>
+
                   <div className="flex items-center space-x-2 opacity-60 group-hover:opacity-100 transition-opacity duration-200">
                     <span
-                      className={`text-xs transition-colors duration-300 ${theme === "dark" ? "text-zinc-400" : "text-gray-600"
-                        }`}
+                      className={`text-xs transition-colors duration-300 ${
+                        theme === "dark" ? "text-zinc-400" : "text-gray-600"
+                      }`}
                     >
                       {link.clickCount}
                     </span>
+
                     <ExternalLink
-                      className={`h-4 w-4 transition-colors duration-300 ${theme === "dark" ? "text-zinc-400" : "text-gray-600"
-                        }`}
+                      className={`h-4 w-4 transition-colors duration-300 ${
+                        theme === "dark" ? "text-zinc-400" : "text-gray-600"
+                      }`}
                     />
                   </div>
                 </a>
