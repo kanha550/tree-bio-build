@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -12,7 +13,6 @@ import {
   Linkedin,
   Globe,
   ExternalLink,
-  Share,
   Star,
   Sun,
   Moon,
@@ -29,7 +29,7 @@ interface LinkItem {
   id: string;
   title: string;
   url: string;
-  description?: string;
+  description?: string | null;
   clickCount: number;
   userId: string;
   createdAt: string;
@@ -52,8 +52,8 @@ interface ProfileData {
   username: string;
   firstName: string;
   lastName: string;
-  imageUrl: string;
-  bio: string;
+  imageUrl?: string | null;
+  bio?: string | null;
   createdAt: string;
   updatedAt: string;
   links: LinkItem[];
@@ -254,7 +254,7 @@ export default function TreeBioProfile({ profileData }: TreeBioProfileProps) {
                 className={`text-base leading-relaxed max-w-sm mx-auto transition-colors duration-300 ${theme === "dark" ? "text-zinc-300" : "text-gray-700"
                   }`}
               >
-                {profileData.bio}
+                {profileData.bio ?? ""}
               </p>
             </div>
           </div>
@@ -277,7 +277,7 @@ export default function TreeBioProfile({ profileData }: TreeBioProfileProps) {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => handleLinkClick(link.id, link.url)}
+                  onClick={() => handleLinkClick(link.id)}
                 >
                   <span className="flex-1 text-center truncate px-4">
                     {link.title}
@@ -289,7 +289,7 @@ export default function TreeBioProfile({ profileData }: TreeBioProfileProps) {
                         theme === "dark" ? "text-zinc-400" : "text-gray-600"
                       }`}
                     >
-                      {link.clickCount}
+                      {linkClicks[link.id] ?? link.clickCount}
                     </span>
 
                     <ExternalLink
@@ -343,7 +343,7 @@ export default function TreeBioProfile({ profileData }: TreeBioProfileProps) {
                 : "border-gray-300/60 bg-gray-100/30 text-gray-800 hover:bg-gray-200/50 hover:border-gray-400/60"
                 }`}
             >
-              <img src="/logo.svg" alt="TreeBio" className="h-10 w-10 mr-2" />
+              <Image src="/logo.svg" alt="TreeBio" width={40} height={40} className="h-10 w-10 mr-2" />
               <span className="group-hover:scale-105 transition-transform duration-200 flex-1 text-center">
                 Join {profileData.username} on TreeBio
               </span>

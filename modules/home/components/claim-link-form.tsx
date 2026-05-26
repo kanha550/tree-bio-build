@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Check, Link, Loader2 } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 import { checkProfileUsernameAvailability, claimUsername } from "@/modules/profile/actions";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -152,7 +152,7 @@ const ClaimLinkForm = () => {
           }
         </Button>
         <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center w-full">
-          By continuing, you agree to TreeBio's Terms of Service and Privacy
+          By continuing, you agree to TreeBio&apos;s Terms of Service and Privacy
           Policy.
         </p>
       </form>

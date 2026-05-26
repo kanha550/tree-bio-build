@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Share,
-  X,
   Copy,
   ListFilter,
   QrCode,
@@ -23,7 +22,6 @@ import {
 import { Globe } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { set } from "zod";
 
 const ShareMenu = ({ username }: { username: string }) => {
   const [isCopied, setIsCopied] = useState(false);

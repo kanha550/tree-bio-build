@@ -8,7 +8,6 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -61,11 +60,6 @@ const linkSchema = z.object({
     .string()
     .max(200, "Description must be less than 200 characters")
     .optional(),
-});
-
-const socialLinkSchema = z.object({
-  platform: z.enum(["instagram", "youtube", "email"]),
-  url: z.string().url("Please enter a valid URL"),
 });
 
 export type ProfileFormData = z.infer<typeof profileSchema>;
@@ -277,11 +271,6 @@ const LinkForm = ({ username, bio, link, socialLinks: initialSocialLinks = [] }:
     setIsSocialModalOpen(true);
   };
 
-  const handleEditSocialLink = (socialLink: SocialLink) => {
-    setEditingSocialLink(socialLink);
-    setIsSocialModalOpen(true);
-  };
-
   const handleDeleteSocialLink = async (socialLinkId: string) => {
     try {
       const result = await deleteSocialLink(socialLinkId);
@@ -309,12 +298,6 @@ const LinkForm = ({ username, bio, link, socialLinks: initialSocialLinks = [] }:
         return Mail;
     }
   };
-
-  const socialLinks = [
-    { platform: "instagram" as const, icon: Instagram },
-    { platform: "youtube" as const, icon: Youtube },
-    { platform: "email" as const, icon: Mail },
-  ];
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-6">
@@ -469,7 +452,7 @@ const LinkForm = ({ username, bio, link, socialLinks: initialSocialLinks = [] }:
 
       {/* Links Section */}
       <div className="space-y-3">
-        {links.map((link, index) => (
+        {links.map((link) => (
           <LinkCard
             key={link.id}
             link={link}

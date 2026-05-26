@@ -82,15 +82,17 @@ export const generateDateRange = (days: number): string[] => {
 };
 
 export const fillMissingDates = (
-  data: { date: string; [key: string]: any }[],
+  data: Array<{ date: string; [key: string]: number | string }>,
   days: number,
   valueKey: string = "visits"
 ) => {
   const dateRange = generateDateRange(days);
-  const dataMap = new Map(data.map((item) => [item.date, item]));
+  const dataMap = new Map<string, { date: string; [key: string]: number | string }>(
+    data.map((item) => [item.date, item])
+  );
 
   return dateRange.map((date) => ({
     date,
-    [valueKey]: dataMap.get(date)?.[valueKey] || 0,
+    [valueKey]: (dataMap.get(date)?.[valueKey] as number) || 0,
   }));
 };
